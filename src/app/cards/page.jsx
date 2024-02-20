@@ -10,7 +10,8 @@ const getDataCate = async () => {
   }
   return res.json();
 };
-const getDataCards = async (page: Number, cat: any) => {
+// @ts-ignore
+const getDataCards = async (page, cat) => {
   const res = await fetch(
     `http://localhost:3000/api/post?page=${page}&cat=${cat || ""}`,
     {
@@ -39,7 +40,7 @@ export default async function CardSection({ page, cat }) {
             Recent posts
           </h1>
           <div className="flex flex-col items-center justify-center">
-            {posts?.map((item: any) => {
+            {posts?.map((item) => {
               return (
                 <div className="w-2/3 flex flex-col" key={item._id}>
                   <div className="flex justify-around mb-2">
@@ -71,7 +72,7 @@ export default async function CardSection({ page, cat }) {
               Some Categories
             </h1>
             <div className="flex flex-wrap items-center justify-center">
-              {dataCate?.map((item: any) => {
+              {dataCate?.map((item) => {
                 return (
                   <div key={item._id} className="my-4">
                     <Link

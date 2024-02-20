@@ -71,7 +71,7 @@ export default function WritePage() {
     router.push("/");
   }
 
-  const slugify = (str: string) =>{
+  const slugify = (str) =>{
     return str
       .toLowerCase()
       .trim()

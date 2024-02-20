@@ -6,7 +6,7 @@ import { navLinks } from "@/utils/navLinks";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 
-
+// @ts-ignore
 export default function Authenticated() {
   const {status} = useSession();
   const [open, setOpen] = useState(false);

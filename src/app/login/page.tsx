@@ -12,7 +12,7 @@ export default function LoginPage(){
     if (status === "authenticated") {
       router.push('/');
     }
-  }, [status]); // Execute the effect only when the status changes
+  }, [status, router]); // Include 'router' in the dependency array
 
   if(status === "loading"){
     return <div>Loading...</div>
