@@ -34,7 +34,7 @@ export default function Comments({ postSlug }) {
 
   return (
     <div className="h-full">
-      <h1 className="mb-6 font-semibold text-lg">Comments</h1>
+      <h1 className="mb-6 font-semibold text-lg">Comments </h1>
       {status === "authenticated" ? (
         <div className="flex items-center justify-between gap-8">
           <textarea placeholder="Write a comment here" className="p-2 w-full text-sm md:text-xl" onChange={(e) => setDesc(e.target.value)}/>
