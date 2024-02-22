@@ -2,7 +2,7 @@ import Pagination from "@/components/pagination/pagination";
 import Link from "next/link";
 
 const getDataCate = async () => {
-  const res = await fetch("http://localhost:3000/api/category", {
+  const res = await fetch(process.env.NEXT_PUBLIC_URL + "/api/category", {
     cache: "no-store",
   });
   if (!res.ok) {
@@ -10,10 +10,10 @@ const getDataCate = async () => {
   }
   return res.json();
 };
-// @ts-ignore
+
 const getDataCards = async (page, cat) => {
   const res = await fetch(
-    `http://localhost:3000/api/post?page=${page}&cat=${cat || ""}`,
+    process.env.NEXT_PUBLIC_URL + `/api/post?page=${page}&cat=${cat || ""}`,
     {
       cache: "no-store",
     }
@@ -24,7 +24,7 @@ const getDataCards = async (page, cat) => {
   return res.json();
 };
 
-// @ts-ignore
+
 export default async function CardSection({ page, cat }) {
   const dataCate = await getDataCate();
   const { posts, count } = await getDataCards(page, cat);

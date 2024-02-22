@@ -81,7 +81,7 @@ export default function WritePage() {
   }
 
   const handleSubmit = async () =>{
-    const res = await fetch("/api/post", {
+    const res = await fetch(process.env.NEXT_PUBLIC_URL + "/api/post", {
       method: "POST",
       body: JSON.stringify({
         title,

@@ -1,7 +1,7 @@
 import React from "react";
-import CardSection from "../cards/page";
+// import CardSection from "../cards/page";
 import Trending from "../trending/page";
-
+import CardSection from "@/components/CardSection"
 
 const Main = ( page ) => {
   return (

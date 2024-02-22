@@ -19,10 +19,10 @@ const fetcher = async (url: string | URL | Request) =>{
 //@ts-ignore
 export default function Comments({ postSlug }) {
   const {status} = useSession();
-  const { data, mutate, error } = useSWR(`http://localhost:3000/api/comment?postSlug=${postSlug}`, fetcher);
+  const { data, mutate, error } = useSWR(process.env.NEXT_PUBLIC_URL + `/api/comment?postSlug=${postSlug}`, fetcher);
   const [desc, setDesc] = useState("");
   const handleSubmit = async() => {
-    await fetch("/api/comment", {
+    await fetch(process.env.NEXT_PUBLIC_URL + "/api/comment", {
       method: "POST",
       body: JSON.stringify({desc, postSlug})
     })

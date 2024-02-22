@@ -4,7 +4,7 @@ import Image from "next/image";
 // @ts-ignore
 const getDataCards = async (slug) => {
   const res = await fetch(
-    `http://localhost:3000/api/post/${slug}`,
+    process.env.NEXT_PUBLIC_URL + `/api/post/${slug}`,
     {
       cache: "no-store",
     }
