@@ -1,4 +1,4 @@
-import CardSection from "../cards/page";
+import CardSection from "@/components/CardSection";
 
 // @ts-ignore
 export default function Blog({searchParams}){
