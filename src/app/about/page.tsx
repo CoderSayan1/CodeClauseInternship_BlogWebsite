@@ -9,24 +9,28 @@ export default function About() {
               <img
                 className="w-6 h-6 md:w-8 md:h-8"
                 src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb33.png"
+                alt="Reload it"
               />
             </a>
             <a className="mr-5 hover:cursor-pointer">
               <img
                 className="w-6 h-6 md:w-8 md:h-8"
                 src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb34.png"
+                alt="Reload it"
               />
             </a>
             <a className="mr-5 hover:cursor-pointer">
               <img
                 className="w-6 h-6 md:w-8 md:h-8"
                 src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb35.png"
+                alt="Reload it"
               />
             </a>
             <a className="hover:cursor-pointer">
               <img
                 className="w-6 h-6 md:w-8 md:h-8"
                 src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb36.png"
+                alt="Reload it"
               />
             </a>
           </div>

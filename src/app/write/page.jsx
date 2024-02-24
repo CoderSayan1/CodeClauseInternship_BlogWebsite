@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,16 +11,16 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import dynamic from "next/dynamic";
-import 'froala-editor/js/froala_editor.pkgd.min.js';
-import "froala-editor/css/froala_editor.pkgd.min.css";
-import "froala-editor/css/froala_style.min.css";
 import { app } from "@/utils/firebase";
 
 const storage = getStorage(app);
 const FroalaEditor = dynamic(() => import("react-froala-wysiwyg"), {
   ssr: false,
 });
+
+import 'froala-editor/js/froala_editor.pkgd.min.js';
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import "froala-editor/css/froala_style.min.css";
 
 export default function WritePage() {
   const { status } = useSession();

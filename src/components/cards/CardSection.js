@@ -50,7 +50,7 @@ export default async function CardSection({ page, cat }) {
               return (
                 <div className="w-2/3 flex flex-col" key={item._id}>
                   <div className="flex justify-around items-center mb-2">
-                    <span className="text-red-700 font-semibold text-lg  capitalize">{item.catSlug}</span>
+                    <span className="text-red-700 font-semibold text-xl  capitalize">{item.catSlug}</span>
                     <span className="md:font-semibold font-medium md:text-lg text-[10px]">{item.createdAt.substring(0, 10)}</span>
                   </div>
                   {<Image
