@@ -22,11 +22,19 @@ export default function Comments({ postSlug }) {
   const { data, mutate, error } = useSWR(process.env.NEXT_PUBLIC_URL + `/api/comment?postSlug=${postSlug}`, fetcher);
   const [desc, setDesc] = useState("");
   const handleSubmit = async() => {
-    await fetch(process.env.NEXT_PUBLIC_URL + "/api/comment", {
-      method: "POST",
-      body: JSON.stringify({desc, postSlug})
-    })
-    mutate();
+    try {
+      await fetch(process.env.NEXT_PUBLIC_URL + "/api/comment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ desc, postSlug }),
+      });
+      mutate(); // Refresh comments
+      setDesc(""); // Clear input field
+    } catch (error) {
+      console.error("Failed to submit comment:", error);
+    }
   }
 
   if (error) return <div>Error: {error.message}</div>;
