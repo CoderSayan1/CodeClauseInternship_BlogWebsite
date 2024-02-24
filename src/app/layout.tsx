@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./global.css";
 import Navbar from "./navbar/page";
 import Footer from "./footer/page";
 import AuthProvider from "@/providers/authProvider";
+import {Fredoka} from "@next/font/google"
 
-const inter = Inter({ subsets: ["latin"] });
+
+const fredoka = Fredoka({ subsets: ["latin"], weight: ['400'] });
 
 export const metadata: Metadata = {
   title: "SD Blog",
@@ -24,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={fredoka.className}>
         <AuthProvider>
           <Navbar />
           {children}

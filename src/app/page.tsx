@@ -1,4 +1,4 @@
-import CardSection from "@/components/CardSection"
+import CardSection from "@/components/cards/CardSection"
 
 import Trending from "./trending/page";
 

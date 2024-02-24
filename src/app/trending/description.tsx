@@ -44,7 +44,7 @@ const Description = ({ clickNext, clickPrev, activeImgIndex }: Props) => {
             </div>
           </motion.div>
 
-          <button className="bg-[#ecae7e] hover:bg-[#bc7c4c] text-white md:px-4 md:py-2 px-2 py-2 rounded-md my-10">
+          <button className="hover:bg-[#ecae7e] bg-[#bc7c4c] text-white md:px-4 md:py-2 px-2 py-2 rounded-md md:my-10 my-8">
             Read More
           </button>
           <div className="md:absolute hidden md:bottom-1 bottom-10 right-10 md:right-0 w-full md:flex justify-center items-center">

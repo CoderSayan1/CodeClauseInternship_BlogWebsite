@@ -4,21 +4,25 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import "react-quill/dist/quill.snow.css";
 import {
   getStorage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import { app } from "@/utils/firebase";
 import dynamic from "next/dynamic";
+import 'froala-editor/js/froala_editor.pkgd.min.js';
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import "froala-editor/css/froala_style.min.css";
+import { app } from "@/utils/firebase";
 
 const storage = getStorage(app);
+const FroalaEditor = dynamic(() => import("react-froala-wysiwyg"), {
+  ssr: false,
+});
 
 export default function WritePage() {
   const { status } = useSession();
-  const ReactQuill = dynamic(() => import('react-quill'), {ssr: false});
   const router = useRouter();
 
   const [file, setFile] = useState(null);
@@ -27,7 +31,6 @@ export default function WritePage() {
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
-  
 
   useEffect(() => {
     const upload = () => {
@@ -62,8 +65,6 @@ export default function WritePage() {
     file && upload();
   }, [file]);
 
-  
-
   if (status === "loading") {
     return <div>Loading...</div>;
   }
@@ -71,16 +72,16 @@ export default function WritePage() {
     router.push("/");
   }
 
-  const slugify = (str) =>{
+  const slugify = (str) => {
     return str
       .toLowerCase()
       .trim()
-      .replace(/[^\w\s-]/g,"")
-      .replace(/[\s_-]+/g,"-")
-      .replace(/^-+|-+$/g,"");
-  }
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_-]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  };
 
-  const handleSubmit = async () =>{
+  const handleSubmit = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_URL + "/api/post", {
       method: "POST",
       body: JSON.stringify({
@@ -89,23 +90,26 @@ export default function WritePage() {
         img: media,
         slug: slugify(title),
         catSlug: catSlug || "style",
-      })
+      }),
     });
     if (res.status === 200) {
       const data = await res.json();
       router.push(`/posts/${data.slug}`);
     }
-  }
+  };
 
   return (
     <div className="md:h-[100vh] h-full w-3/4 mx-auto">
       <input
         type="text"
         placeholder="Title"
-        className="p-12 w-2/3 text-2xl border-none bg-transparent"
+        className="p-12 w-2/3 text-2xl border-none bg-transparent mt-10 outline-none"
         onChange={(e) => setTitle(e.target.value)}
       />
-      <select className="bg-transparent my-10" onChange={(e) => setCatSlug(e.target.value)}>
+      <select
+        className="bg-transparent my-10"
+        onChange={(e) => setCatSlug(e.target.value)}
+      >
         <option value="style">style</option>
         <option value="fashion">fashion</option>
         <option value="food">food</option>
@@ -146,17 +150,21 @@ export default function WritePage() {
             </button>
           </div>
         )}
-        <ReactQuill
-          theme="snow"
-          value={value}
-          onChange={setValue}
-          placeholder="Write your blog"
-          className="w-full text-xl"
-        />
+        <div className="w-full text-xl">
+          <FroalaEditor
+            onModelChange={setValue}
+            config={{
+              placeholderText: "Write your blog"
+            }}
+          />
+        <button
+          className="md:mt-16 my-28 mx-12 px-4 py-2 bg-green-700 text-white rounded-xl hover:bg-green-900 font-semibold"
+          onClick={handleSubmit}
+        >
+          Publish
+        </button>
+        </div>
       </div>
-      <button className="md:mt-16 my-28 mx-12 px-4 py-2 bg-green-700 text-white rounded-xl hover:bg-green-900 font-semibold" onClick={handleSubmit}>
-        Publish
-      </button>
     </div>
   );
 }

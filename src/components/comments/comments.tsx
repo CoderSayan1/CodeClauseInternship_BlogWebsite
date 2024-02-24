@@ -41,7 +41,7 @@ export default function Comments({ postSlug }) {
           <button className="bg-green-700 hover:bg-green-900 text-white rounded-lg px-4 py-2 font-semibold outline-none border-none" onClick={handleSubmit}>Send</button>
         </div>
       ) : (
-        <Link href="/login">Login to write a comment</Link>
+        <Link href="/login" className="font-bold text-lg hover:underline hover:text-blue-600 text-orange-700">Login to write a comment</Link>
       )}
       <div>
         {data.map((item: any) => (
