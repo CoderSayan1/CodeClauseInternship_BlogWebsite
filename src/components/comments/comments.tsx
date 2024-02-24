@@ -29,6 +29,7 @@ export default function Comments({ postSlug }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ desc, postSlug }),
+        mode: 'no-cors',
       });
       mutate(); // Refresh comments
       setDesc(""); // Clear input field
