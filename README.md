@@ -61,4 +61,4 @@ Contributions are welcome! Please follow these steps:
 
 ## Contact
 
-For any inquiries or suggestions, feel free to contact [your-email@example.com](mailto:sayan17102002@gmail.com).
+For any inquiries or suggestions, feel free to contact [email@example.com](mailto:sayan17102002@gmail.com).
