@@ -13,25 +13,37 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 
-const storage = getStorage(app);
-const FroalaEditor = dynamic(() => import("react-froala-wysiwyg"), {
-  ssr: false,
-});
-
-import 'froala-editor/js/froala_editor.pkgd.min.js';
+// import 'froala-editor/js/froala_editor.pkgd.min.js';
 import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/css/froala_style.min.css";
+const storage = getStorage(app);
+// const FroalaEditor = dynamic(() => import("react-froala-wysiwyg"), {
+//   ssr: false,
+// });
+
 
 export default function WritePage() {
   const { status } = useSession();
   const router = useRouter();
-
   const [file, setFile] = useState(null);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
+
+    const FroalaEditor = dynamic(
+      async () => {
+        const values = await Promise.all([
+          import("react-froala-wysiwyg"), // must be first import since we are doing values[0] in return
+          import("froala-editor/js/plugins.pkgd.min.js")
+        ]);
+        return values[0];
+      },
+      {
+        loading: () => <p>LOADING!!!</p>,
+        ssr: false
+      });
 
   useEffect(() => {
     const upload = () => {
