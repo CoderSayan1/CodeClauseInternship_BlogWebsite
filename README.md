@@ -5,6 +5,7 @@ This is a blog website project developed during an internship at CodeClause. The
 ## Technologies Used
 
 - Next.js
+- Tailwind CSS
 - MongoDB
 - Firebase
 - Froala Editor
